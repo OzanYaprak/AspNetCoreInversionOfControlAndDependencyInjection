@@ -12,7 +12,7 @@ namespace FactoryPatternIOCImplementation
 
         public BusinessLayer()
         {
-            _dataAccessLayer = new DataAccessLayer();
+            _dataAccessLayer = DataAccessLayerFactory.GetDataAccessLayer();
         }
 
         public List<Product> GetProducts()
