@@ -1,3 +1,4 @@
+using ASPNetCoreDependencyInjection.Web.Interfaces;
 using ASPNetCoreDependencyInjection.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,15 +7,19 @@ namespace ASPNetCoreDependencyInjection.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ISingletonDateService _singletonDateService;
 
-        public HomeController(ILogger<HomeController> logger)
+        // Constructor Seviyesinde Enjeksiyon Ýþlemi
+        public HomeController(ISingletonDateService singletonDateService)
         {
-            _logger = logger;
+            _singletonDateService = singletonDateService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices] ISingletonDateService singletonDateService_2) // Method Seviyesinde Enjeksiyon Ýþlemi
         {
+            ViewBag.Time_1 = _singletonDateService.GetDateTime.TimeOfDay.ToString();
+            ViewBag.Time_2 = singletonDateService_2.GetDateTime.TimeOfDay.ToString();
+
             return View();
         }
 
