@@ -8,11 +8,11 @@ namespace AbstractionDIPImplementation
 {
     public class BusinessLayer
     {
-        private DataAccessLayer _dataAccessLayer { get; set; }
+        private IDataAccessLayer _dataAccessLayer { get; set; }
 
         public BusinessLayer()
         {
-            _dataAccessLayer = new DataAccessLayer();
+            _dataAccessLayer = DataAccessLayerFactory.GetDataAccessLayer();
         }
 
         public List<Product> GetProducts()

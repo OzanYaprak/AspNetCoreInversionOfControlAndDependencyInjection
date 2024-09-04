@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="BusinessLayer.cs" />
     <Compile Include="DataAccessLayer.cs" />
+    <Compile Include="DataAccessLayerFactory.cs" />
+    <Compile Include="IDataAccessLayer.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

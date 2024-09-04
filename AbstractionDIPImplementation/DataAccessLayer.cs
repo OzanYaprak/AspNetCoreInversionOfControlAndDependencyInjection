@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractionDIPImplementation
 {
-    public class DataAccessLayer
+    public class DataAccessLayer : IDataAccessLayer
     {
         public List<Product> GetProducts()
         {
