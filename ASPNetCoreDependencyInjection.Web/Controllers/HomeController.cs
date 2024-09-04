@@ -7,18 +7,19 @@ namespace ASPNetCoreDependencyInjection.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ISingletonDateService _singletonDateService;
+        //private readonly ISingletonDateService _singletonDateService; // Singleton Uygulama Ayakta Olduðu Sürece Bir Defa Oluþturulur.
+        private readonly IScopedDateService _scopedDateService; // Scoped Uygulama Ayakta Olduðu Sürece Her Request Olduðunda Yeniden Oluþturulur.
 
         // Constructor Seviyesinde Enjeksiyon Ýþlemi
-        public HomeController(ISingletonDateService singletonDateService)
+        public HomeController(IScopedDateService scopedDateService)
         {
-            _singletonDateService = singletonDateService;
+            _scopedDateService = scopedDateService; 
         }
 
-        public IActionResult Index([FromServices] ISingletonDateService singletonDateService_2) // Method Seviyesinde Enjeksiyon Ýþlemi
+        public IActionResult Index([FromServices] IScopedDateService scopedDateService_2) // Method Seviyesinde Enjeksiyon Ýþlemi
         {
-            ViewBag.Time_1 = _singletonDateService.GetDateTime.TimeOfDay.ToString();
-            ViewBag.Time_2 = singletonDateService_2.GetDateTime.TimeOfDay.ToString();
+            ViewBag.Time_1 = _scopedDateService.GetDateTime.TimeOfDay.ToString();
+            ViewBag.Time_2 = scopedDateService_2.GetDateTime.TimeOfDay.ToString();
 
             return View();
         }
