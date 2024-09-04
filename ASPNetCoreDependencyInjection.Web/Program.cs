@@ -1,3 +1,6 @@
+using ASPNetCoreDependencyInjection.Web.Interfaces;
+using ASPNetCoreDependencyInjection.Web.Services;
+
 namespace ASPNetCoreDependencyInjection.Web
 {
     public class Program
@@ -5,6 +8,12 @@ namespace ASPNetCoreDependencyInjection.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+
+            builder.Services.AddSingleton<ISingletonDateService, DateService>();
+            builder.Services.AddScoped<IScopedDateService, DateService>();
+            builder.Services.AddTransient<ITransientDateService, DateService>();
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
